@@ -1,7 +1,7 @@
 #pragma once
 #include "kthook/kthook.hpp"
 #include "sampapi/CChat.h"
-#include "Rpc.h"
+#include "PluginRPC.h"
 
 using CTimerProto = void( __cdecl* )();
 namespace samp = sampapi::v037r1;

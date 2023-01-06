@@ -18,4 +18,5 @@ void Plugin::mainloop(const decltype(hookCTimerUpdate)& hook) {
         rakhook::on_receive_rpc += std::bind(&PlaginRPC::onServerMessage, &RPC, _1, _2);
         inited = true;
     }
+    hook.call_trampoline();
 }

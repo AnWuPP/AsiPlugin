@@ -1,4 +1,4 @@
-#include "RPC.h"
+#include "PluginRPC.h"
 
 template <typename T>
 std::string readWithSize(RakNet::BitStream* bs) {

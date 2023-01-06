@@ -30,7 +30,7 @@ include_directories(
 target_sources(AsiPlugin PRIVATE
 	main.cpp
 	Plugin.cpp
-	RPC.cpp
+	PluginRPC.cpp
 )
 
 set_target_properties(AsiPlugin

@@ -1,8 +1,6 @@
 #pragma once
 
 #include "PluginRPC.h"
-#include <RakHook/rakhook.hpp>
-#include <RakNet/StringCompressor.h>
 #include <kthook/kthook.hpp>
 
 using CTimerProto = void( __cdecl* )();

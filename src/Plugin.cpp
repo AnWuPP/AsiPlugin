@@ -1,5 +1,7 @@
 #include "Plugin.h"
 #include <sampapi/CChat.h>
+#include <RakHook/rakhook.hpp>
+#include <RakNet/StringCompressor.h>
 
 namespace samp = sampapi::v037r1;
 

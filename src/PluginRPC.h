@@ -1,7 +1,6 @@
 #pragma once
 
 #include "RakNet/BitStream.h"
-#include <string>
 
 class PluginRPC {
 public:

@@ -1,5 +1,5 @@
 ﻿#include "Plugin.h"
-#include <iostream>
+#include <memory>
 
 std::unique_ptr<Plugin> plugin;
 

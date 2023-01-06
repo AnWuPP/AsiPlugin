@@ -8,7 +8,7 @@ using CTimerProto = void( __cdecl* )();
 class Plugin {
 public:
     Plugin() = delete;
-	Plugin(HMODULE hModule);
+    Plugin(HMODULE hModule);
     HMODULE hModule;
 private:
     PluginRPC RPC;

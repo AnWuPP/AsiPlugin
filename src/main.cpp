@@ -1,15 +1,13 @@
 ﻿#include "Plugin.h"
+#include <iostream>
+
 std::unique_ptr<class Plugin> plugin;
 
-BOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved )
-{
-    switch (ul_reason_for_call)
-    {
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD ulReasonForCall, LPVOID lpReserved) {
+    switch (ulReasonForCall) {
     case DLL_PROCESS_ATTACH:
         DisableThreadLibraryCalls(hModule);
-        plugin = std::make_unique<class Plugin>();
+        plugin = std::make_unique<Plugin>(hModule);
         break;
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:

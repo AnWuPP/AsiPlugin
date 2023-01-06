@@ -1,17 +1,19 @@
 #pragma once
-#include "kthook/kthook.hpp"
-#include "sampapi/CChat.h"
+
 #include "PluginRPC.h"
+#include <RakHook/rakhook.hpp>
+#include <RakNet/StringCompressor.h>
+#include <kthook/kthook.hpp>
 
 using CTimerProto = void( __cdecl* )();
-namespace samp = sampapi::v037r1;
 
 class Plugin {
 public:
-	Plugin();
-	virtual ~Plugin();
+    Plugin() = delete;
+	Plugin(HMODULE hModule);
+    HMODULE hModule;
 private:
-    PlaginRPC RPC;
+    PluginRPC RPC;
     kthook::kthook_simple<CTimerProto> hookCTimerUpdate{ reinterpret_cast<void*>(0x561B10) };
     void mainloop(const decltype(hookCTimerUpdate)& hook);
 };

@@ -1,5 +1,8 @@
 include(FetchContent)
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+
 FetchContent_Declare(
 	sampapi
 	GIT_REPOSITORY https://github.com/BlastHackNet/SAMP-API.git
@@ -22,24 +25,17 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(sampapi ktsignal kthook rakhook)
 
-add_library(AsiPlugin SHARED)
-target_link_libraries(AsiPlugin PUBLIC sampapi kthook rakhook)
-
-include_directories(
-	${PROJECT_SOURCE_DIR}/include
-)
-target_sources(AsiPlugin PRIVATE
+add_library(${PROJECT_NAME} SHARED)
+target_link_libraries(${PROJECT_NAME} PUBLIC sampapi kthook rakhook)
+target_sources(${PROJECT_NAME} PRIVATE
 	main.cpp
 	Plugin.cpp
 	PluginRPC.cpp
 )
 
-set_target_properties(AsiPlugin
+set_target_properties(${PROJECT_NAME}
     PROPERTIES
-    OUTPUT_NAME ${ASI_FILENAME}
+    OUTPUT_NAME ${PROJECT_NAME}
     SUFFIX ".asi"
-    RUNTIME_OUTPUT_DIRECTORY_DEBUG $<IF:$<BOOL:${PATH_TO_SAMP}>,${PATH_TO_SAMP},${CMAKE_SOURCE_DIR}/Debug>
-    RUNTIME_OUTPUT_DIRECTORY_RELEASE $<IF:$<BOOL:${PATH_TO_SAMP}>,${PATH_TO_SAMP},${CMAKE_SOURCE_DIR}/Release>
 )
-target_compile_features(AsiPlugin PUBLIC cxx_std_20)
-set_property(TARGET AsiPlugin PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)

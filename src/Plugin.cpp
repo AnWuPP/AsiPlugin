@@ -1,12 +1,12 @@
 #include "Plugin.h"
+#include <sampapi/CChat.h>
 
-Plugin::Plugin() {
+namespace samp = sampapi::v037r1;
+
+Plugin::Plugin(HMODULE hndl) : hModule(hndl) {
     using namespace std::placeholders;
     hookCTimerUpdate.set_cb(std::bind(&Plugin::mainloop, this, _1));
-	hookCTimerUpdate.install();
-}
-Plugin::~Plugin() {
-    hookCTimerUpdate.remove();
+    hookCTimerUpdate.install();
 }
 
 void Plugin::mainloop(const decltype(hookCTimerUpdate)& hook) {
@@ -15,8 +15,8 @@ void Plugin::mainloop(const decltype(hookCTimerUpdate)& hook) {
         using namespace std::placeholders;
         samp::RefChat()->AddMessage(0xFFFFFFFF, "Plugin loaded");
         StringCompressor::AddReference();
-        rakhook::on_receive_rpc += std::bind(&PlaginRPC::onServerMessage, &RPC, _1, _2);
+        rakhook::on_receive_rpc += std::bind(&PluginRPC::onServerMessage, &RPC, _1, _2);
         inited = true;
     }
-    hook.call_trampoline();
+    return hook.get_trampoline()();
 }

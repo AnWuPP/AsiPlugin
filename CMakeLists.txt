@@ -1,11 +1,8 @@
-﻿cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required (VERSION 3.15)
 
-# change for you "D:/Games/Grand Theft Auto San Andreas Samp RP/"
-set(ASI_FILENAME "AsiPlugin")
-option(PATH_TO_SAMP "Path to game folder" OFF)
-
-project (${ASI_FILENAME}
+project ("AsiPlugin"
 	VERSION 0.0
 )
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 add_subdirectory(src)

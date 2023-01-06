@@ -3,7 +3,7 @@
 #include "RakNet/StringCompressor.h"
 #include "RakNet/PacketEnumerations.h"
 
-class PluginEvents {
+class PlaginRPC {
 public:
     bool onServerMessage(unsigned char& id, RakNet::BitStream* bs);
 };

@@ -1,4 +1,4 @@
-#include "Rpc.h"
+#include "RPC.h"
 
 template <typename T>
 std::string readWithSize(RakNet::BitStream* bs) {
@@ -17,7 +17,7 @@ void writeWithSize(RakNet::BitStream* bs, std::string_view str) {
     bs->Write(str.data(), size);
 }
 
-bool PluginEvents::onServerMessage(unsigned char& id, RakNet::BitStream* bs) {
+bool PlaginRPC::onServerMessage(unsigned char& id, RakNet::BitStream* bs) {
     if (id != 93) // RPC_ClientMessage
         return true;
     unsigned long color;

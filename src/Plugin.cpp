@@ -15,7 +15,7 @@ void Plugin::mainloop(const decltype(hookCTimerUpdate)& hook) {
         using namespace std::placeholders;
         samp::RefChat()->AddMessage(0xFFFFFFFF, "Plugin loaded");
         StringCompressor::AddReference();
-        rakhook::on_receive_rpc += std::bind(&PluginEvents::onServerMessage, rpc, _1, _2);
+        rakhook::on_receive_rpc += std::bind(&PlaginRPC::onServerMessage, &RPC, _1, _2);
         inited = true;
     }
 }

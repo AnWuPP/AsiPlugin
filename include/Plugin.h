@@ -11,7 +11,7 @@ public:
 	Plugin();
 	virtual ~Plugin();
 private:
-    PluginEvents rpc;
+    PlaginRPC RPC;
     kthook::kthook_simple<CTimerProto> hookCTimerUpdate{ reinterpret_cast<void*>(0x561B10) };
     void mainloop(const decltype(hookCTimerUpdate)& hook);
 };

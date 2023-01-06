@@ -1,5 +1,4 @@
-﻿#pragma warning( disable : 4018 )
-#include "Plugin.h"
+﻿#include "Plugin.h"
 std::unique_ptr<class Plugin> plugin;
 
 BOOL APIENTRY DllMain( HMODULE hModule,

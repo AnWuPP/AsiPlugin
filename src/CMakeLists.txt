@@ -23,6 +23,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(sampapi ktsignal kthook rakhook)
 
 add_library(AsiPlugin SHARED)
+target_link_libraries(AsiPlugin PUBLIC sampapi kthook rakhook)
 
 include_directories(
 	${PROJECT_SOURCE_DIR}/include
@@ -37,10 +38,8 @@ set_target_properties(AsiPlugin
     PROPERTIES
     OUTPUT_NAME ${ASI_FILENAME}
     SUFFIX ".asi"
-    RUNTIME_OUTPUT_DIRECTORY_DEBUG ${PATH_TO_SAMP}
-    RUNTIME_OUTPUT_DIRECTORY_RELEASE ${PATH_TO_SAMP}
+    RUNTIME_OUTPUT_DIRECTORY_DEBUG $<IF:$<BOOL:${PATH_TO_SAMP}>,${PATH_TO_SAMP},${CMAKE_SOURCE_DIR}/Debug>
+    RUNTIME_OUTPUT_DIRECTORY_RELEASE $<IF:$<BOOL:${PATH_TO_SAMP}>,${PATH_TO_SAMP},${CMAKE_SOURCE_DIR}/Release>
 )
 target_compile_features(AsiPlugin PUBLIC cxx_std_20)
-target_link_libraries(AsiPlugin PUBLIC sampapi kthook rakhook)
-
 set_property(TARGET AsiPlugin PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")

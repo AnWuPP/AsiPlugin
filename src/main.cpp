@@ -1,7 +1,7 @@
 ﻿#include "Plugin.h"
 #include <iostream>
 
-std::unique_ptr<class Plugin> plugin;
+std::unique_ptr<Plugin> plugin;
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ulReasonForCall, LPVOID lpReserved) {
     switch (ulReasonForCall) {
